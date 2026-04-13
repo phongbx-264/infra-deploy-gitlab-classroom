@@ -54,6 +54,6 @@ deploy-job:
         docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
         docker compose restart
       EOF
-
+ 
   tags:
     - localhost1
