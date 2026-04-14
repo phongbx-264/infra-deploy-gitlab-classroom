@@ -43,7 +43,7 @@ deploy-job:
     - ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
 
   script:
-    - scp -P 45669 "STG_ENV" $SERVER_USER@$SERVER_IP:/opt/base-classroom/
+    - scp -P 45669 "$STG_ENV" $SERVER_USER@$SERVER_IP:/opt/base-classroom/
     - |
       ssh -p 45669 $SERVER_USER@$SERVER_IP << EOF
         cd /opt/base-classroom/
