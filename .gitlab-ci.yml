@@ -1,5 +1,5 @@
 stages:
-  - build
+  #- build
   - deploy
 
 variables:
@@ -11,7 +11,7 @@ workflow:
     - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "cicd"'
       when: always 
     - when: never
-build-job:
+.build-job:
   stage: build
   image: docker:24.0.5
   services:
@@ -38,7 +38,7 @@ deploy-job:
 
     # setup SSH key
     - mkdir -p ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
     - chmod 600 ~/.ssh/id_ed25519
     - echo $SERVER_IP
     # avoid host verification issue
